@@ -1,0 +1,8 @@
+syntax: glob
+**pyc
+**pyo
+**save
+**orig
+local_settings.py
+**db
+static

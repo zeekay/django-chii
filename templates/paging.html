@@ -1,0 +1,17 @@
+<div class="paging">
+    <div class="paging-meta">
+        <ul>
+    {% if pager.has_previous %}
+        <li><a href="?page={{ pager.previous_page_number }}">previous</a></li>
+    {% endif %}
+
+    <span class="current">
+        <li>Page {{ pager.number }} of {{ pager.paginator.num_pages }}</li>
+    </span>
+
+    {% if pager.has_next %}
+        <li><a href="?page={{ pager.next_page_number }}">next</a></li>
+    {% endif %}
+        </ul>
+    </div>
+</div>

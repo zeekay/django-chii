@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="quotes">
+    {% for quote in quotes.object_list %}
+    <div class="quote_info">
+        <ul>
+                <li><a href="{% url quotes.views.quote quote.id %}">{{ quote.id }}</a><li>
+                <li>added by <a href="{% url quotes.views.nick quote.nick %}">{{ quote.nick }}</a><li>
+                <li>{{ quote.added }}<li>
+        </ul>
+    </div>
+    <div class="quote">{{ quote.quote }}</div>
+    <br />
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %}
+    {% include "paging.html" with pager=quotes %}
+{% endblock %}

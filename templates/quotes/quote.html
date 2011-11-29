@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if quote %}
+    <h1>{{ quote.quote }}</h1>
+        <div class='quote_info'>
+          <ul>
+            <li><a href="{% url quotes.views.quote quote.id %}">{{ quote.id }}</a><li>
+            <li>added by <a href="{% url quotes.views.nick quote.nick %}">{{ quote.nick }}</a><li>
+            <li>{{ quote.added }}<li>
+          </ul>
+        </div>
+{% else %}
+    <p>Quote not found.</p>
+{% endif %}
+
+{% endblock %}

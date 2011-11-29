@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if results.object_list %}
+    <h2>search for {{ query }}</h2>
+    <div class='quotes'>
+    {% for quote in results.object_list %}
+        <div class='quote_info'>
+          <ul>
+            <li><a href="{% url quotes.views.quote quote.id %}">{{ quote.id }}</a><li>
+            <li>added by <a href="{% url quotes.views.nick quote.nick %}">{{ quote.nick }}</a><li>
+            <li>{{ quote.added }}<li>
+          </ul>
+        </div>
+        <div class='quote'>{{ quote.quote }}</div>
+        <br />
+    {% endfor %}
+    </div>
+    {% else %}
+    <h2>eh what now?</h2>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+    {% include "paging.html" with pager=results %}
+{% endblock %}

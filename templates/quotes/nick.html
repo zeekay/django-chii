@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if by_nick %}
+  <h2>quotes added by {{ nick }}</h2>
+    <div class='quotes'>
+    {% for quote in by_nick %}
+        <div class='quote_info'>
+          <ul>
+            <li><a href="{% url quotes.views.quote quote.id %}">{{ quote.id }}</a><li>
+            <li>added by <a href="{% url quotes.views.nick quote.nick %}">{{ quote.nick }}</a><li>
+            <li>{{ quote.added }}<li>
+          </ul>
+        </div>
+        <div class='quote'>{{ quote.quote }}</div>
+        <br />
+    {% endfor %}
+    </div>
+{% endif %}
+{% if about_nick %}
+  <h2>quotes involving {{ nick }} (probably)</h2>
+    <div class='quotes'>
+    {% for quote in about_nick %}
+        <div class='quote_info'>
+          <ul>
+            <li><a href="{% url quotes.views.quote quote.id %}">{{ quote.id }}</a><li>
+            <li>added by <a href="{% url quotes.views.nick quote.nick %}">{{ quote.nick }}</a><li>
+            <li>{{ quote.added }}<li>
+          </ul>
+        </div>
+        <div class='quote'>{{ quote.quote }}</div>
+        <br />
+    {% endfor %}
+    </div>
+{% endif %}
+{% if not by_nick and not about_nick %}
+  <h2>err, {{ nick }} who?</h2>
+{% endif %}
+{% endblock %}

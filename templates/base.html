@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    {% block head %}
+    <link rel="stylesheet" href="{{ static_url }}style.css" />
+    <title>{% block title %}{% endblock %}{{ site_name }}</title>
+    {% endblock %}
+
+</head>
+<body>
+
+    <div id="header"><a href="/">quotes</a> from <a href="{{ irc_channel_link }}">{{ irc_channel|escape }}</a>
+        <span style="float:right">
+            <form id="search" action="{% url quotes-search %}">
+              <label for="q">search: </label>
+              <input type="text" name="q" value="{{ query|escape }}">
+            </form>
+            <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">?</a>
+        </span>
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div id="footer">
+        {% block footer %}{% endblock %}
+    </div>
+
+</body>
