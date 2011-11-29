@@ -2,17 +2,30 @@
 <html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     {% block head %}
     <link rel="stylesheet" href="{{ static_url }}style.css" />
     <title>{% block title %}{% endblock %}{{ site_name }}</title>
     {% endblock %}
-
 </head>
 <body>
+<div id="content" style="text-align:center">
 
-    <div id="content" style="text-align:center">
-        <h1>{{ site_name }}</h1>
+<div style="float: left; position: relative; left:50%">
+<div style="float: left; position: relative; left:-50%">
+<pre style="font-size:1em; font-family: monospace; text-align:left; margin-top:-2px">
+     |     o  o
+ __  |
+/    |/\   |  |
+\___/|  |_/|_/|_/
+
+</pre>
+</div>
+</div>
+
+    <div style="clear:both">
+        <p class="quotes">
+        ...is setup! hooray! to customize your index page create templates/custom_index.html. Example:
+        </p>
         <br />
         <p class="quotes">
         <strong>{{ irc_channel }}</strong> is a friendly irc channel on <a href="{{ irc_server_link }}">{{ irc_server }}</a>.
@@ -20,8 +33,11 @@
         </p>
         <br />
         <h2>
-            we got <a href="{% url quotes-list %}">quotes</a> &amp; <a href="{% url links-list %}">links</a>.
-            <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">confused?</a>
+        we got <a href="{% url quotes-list %}">quotes</a> &amp; <a href="{% url links-list %}">links</a>.
+        <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">confused?</a>
         </h2>
     </div>
+
+</div>
 </body>
+

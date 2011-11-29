@@ -6,3 +6,4 @@ syntax: glob
 local_settings.py
 **db
 static
+templates/custom_index.html
