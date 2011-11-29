@@ -1,0 +1,28 @@
+{% extends "links/base.html" %}
+
+{% block content %}
+{% if by_nick %}
+  <h2>links added by {{ nick }}</h2>
+    <div class='quotes'>
+    {% for link in by_nick %}
+    <div class="link"><a href="{{ link.link }}">
+            {% if link.title %}
+            {{ link.title }}
+            {% else %}
+            {{ link.link|escape }}
+            {% endif %}
+        </a></div>
+        <div class='quote_info'>
+          <ul>
+            <li><a href="{% url links-link link.id %}">{{ link.id }}</a><li>
+            <li>added {{ link.added }}<li>
+          </ul>
+        </div>
+        <br />
+    {% endfor %}
+    </div>
+{% endif %}
+{% if not by_nick %}
+  <h2>err, {{ nick }} who?</h2>
+{% endif %}
+{% endblock %}

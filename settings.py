@@ -3,9 +3,11 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = True
 
-SITE_NAME = '#smth on the internetz'
+SITE_NAME = "a little smth"
 IRC_CHANNEL = '#smth'
 IRC_CHANNEL_LINK = 'http://mibbit.com/?channel=%23smth&server=irc.esper.net'
+IRC_SERVER = 'irc.esper.net'
+IRC_SERVER_LINK = 'http://esper.net/'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

@@ -10,23 +10,25 @@
 
 </head>
 <body>
-
-    <div id="header"><a href="/">quotes</a> from <a href="{{ irc_channel_link }}">{{ irc_channel|escape }}</a>
-        <span style="float:right">
-            <form id="search" action="{% url quotes-search %}">
-              <label for="q">search: </label>
-              <input type="text" name="q" value="{{ query|escape }}">
-            </form>
-            <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">?</a>
-        </span>
+    <div id="header">
+    {% block header %}
+    {% endblock %}
     </div>
 
     <div id="content">
-        {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
     </div>
 
     <div id="footer">
-        {% block footer %}{% endblock %}
+    {% block footer %}{% endblock %}
+        <div id="breadcrumb" class="quotes">
+        <ul>
+            <li><a href="/">home</a>
+            <li><a href="{% url links-list %}">links</a></li>
+            <li><a href="{% url quotes-list %}">quotes</a></li>
+            <li><a href="{{ irc_channel_link }}">visit!</a></li>
+            <li><a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">?</a></li>
+        </ul>
+        </div>
     </div>
-
 </body>

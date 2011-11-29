@@ -1,0 +1,32 @@
+{% extends "links/base.html" %}
+
+{% block content %}
+    {% if results.object_list %}
+    <h2>search for {{ query }}</h2>
+    <div class='quotes'>
+    {% for link in results.object_list %}
+        <div class="link"><a href="{{ link.link }}">
+            {% if link.title %}
+            {{ link.title }}
+            {% else %}
+            {{ link.link|escape }}
+            {% endif %}
+        </a></div>
+        <div class='quote_info'>
+          <ul>
+            <li><a href="{% url links-link link.id %}">{{ link.id }}</a><li>
+            <li>added by <a href="{% url links-nick link.nick %}">{{ link.nick }}</a><li>
+            <li>{{ link.added }}<li>
+          </ul>
+        </div>
+        <br />
+    {% endfor %}
+    </div>
+    {% else %}
+    <h2>eh what now?</h2>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+    {% include "paging.html" with pager=results %}
+{% endblock %}

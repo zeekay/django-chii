@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block header %}
+<a href="{% url quotes-list %}">quotes</a> from <a href="/">{{ irc_channel|escape }}</a>
+    <span class="search">
+        <form id="search" action="{% url quotes-search %}">
+          <label for="q">search: </label>
+          <input type="text" name="q" value="{{ query|escape }}">
+        </form>
+    </span>
+{% endblock %}

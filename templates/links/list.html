@@ -1,0 +1,27 @@
+{% extends "links/base.html" %}
+
+{% block content %}
+<div class="quotes">
+    {% for link in links.object_list %}
+    <div class="link"><a href="{{ link.link }}">
+            {% if link.title %}
+            {{ link.title }}
+            {% else %}
+            {{ link.link|escape }}
+            {% endif %}
+        </a></div>
+    <div class="quote_info">
+        <ul>
+                <li><a href="{% url links-link link.id %}">{{ link.id }}</a><li>
+                <li>added by <a href="{% url links.views.nick link.nick %}">{{ link.nick }}</a><li>
+                <li>{{ link.added }}<li>
+        </ul>
+    </div>
+    <br />
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %}
+    {% include "paging.html" with pager=links %}
+{% endblock %}

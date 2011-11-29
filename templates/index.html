@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    {% block head %}
+    <link rel="stylesheet" href="{{ static_url }}style.css" />
+    <title>{% block title %}{% endblock %}{{ site_name }}</title>
+    {% endblock %}
+
+</head>
+<body>
+
+    <div id="content" style="text-align:center">
+        <h1>{{ site_name }}</h1>
+        <br />
+        <p class="quotes">
+        <strong>{{ irc_channel }}</strong> is a friendly irc channel on <a href="{{ irc_server_link }}">{{ irc_server }}</a>.
+        <a href="{{ irc_channel_link }}">come visit us!</a>
+        </p>
+        <br />
+        <h2>
+            we got <a href="{% url quotes-list %}">quotes</a> &amp; <a href="{% url links-list %}">links</a>.
+            <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">confused?</a>
+        </h2>
+    </div>
+</body>

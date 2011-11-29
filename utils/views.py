@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
-def paginate(request, queryset):
-    paginator = Paginator(queryset, 25)
+def paginate(request, queryset, per_page=25):
+    paginator = Paginator(queryset, per_page)
 
     # Make sure page request is an int. If not, deliver first page.
     try:
