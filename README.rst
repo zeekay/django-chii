@@ -1,11 +1,9 @@
-==================================================
-Simple, easy to extend irc bot built with twisted.
-==================================================
+===================================
+Extra modules and web app for chii.
+===================================
 
-``chii`` is a simple irc bot built with twisted. It can be easily
-extended, and comes with a number of modules. There is also a number
-of modules that use Django's ORM and include a web app that are
-available from a secondary project: ``django_chii``.
+``django-chii`` provides a number of extra modules for `chii`, a simple irc bot.
+It includes a web interface as well.
 
 Contact
 =======
