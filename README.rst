@@ -15,17 +15,23 @@ an installation of django-chii `here <http://smth.us>`_.
 Installation
 ============
 
-Setup django project as you would normally, ``pip install -r requirements.txt``, ``./manage.py syncdb``.
-You don't need to setup the django project wherever you have chii, you can just symlink the ``django_chii`` so
-that chii can import it.
+I recommend using ``virtualenv`` and ``pip``. You can install the requirements using ``pip``::
 
-Add ``django-chii`` to your ``bot.config``:
+    pip install -r requirements.txt
+
+You'll want to create a ``local_settings.py`` file and customize the project. Finally run ``syncdb``
+as you normally would::
+
+    python manage.py syncdb
+
+Symlink the ``django_chii`` module so that it can be imported and add ``django_chii`` to the
+list of modules in your ``bot.config`` and specify the full path to ``django-chii``:
 
 ::
 
     modules:
     - django_chii
-    django_chii: /path/to/django/project
+    django_chii: /path/to/django-chii
 
 Contact
 =======
