@@ -1,9 +1,6 @@
-import argparse, datetime, os, re, shlex
+import argparse, datetime, re, shlex
 import lxml.html
-
-from chii import command, event
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from chii import command, config, event
 from django.db.models import Q
 from links.models import Link
 
@@ -17,6 +14,11 @@ parser.add_argument('-user', action='store')
 parser.add_argument('-title', action='store')
 parser.add_argument('-context', action='store')
 parser.add_argument('-all', action='store')
+
+def error(*args, **kwargs):
+    raise Exception
+
+parser.error = error
 
 def url_processing(url):
     """process some links for cleaner database"""
@@ -88,16 +90,21 @@ def search_links(self, channel, nick, host, *args):
 
         def and_q_objs(query):
             """returns AND'd together Q objects"""
-            return Link.objects.filter(reduce(lambda x,y: x | y, [x(query) for x in q_objs.values()])).distinct()
+            return Link.objects.filter(reduce(lambda x,y: x | y, [x(query) for x in q_objs.values()])).order_by('-id').distinct()
 
         def or_q_objs(queries):
             """returns OR'd together Q objects"""
-            return Link.objects.filter(reduce(lambda x,y: x & y, [q_objs[k](v) for k,v in queries if v])).distinct()
+            return Link.objects.filter(reduce(lambda x,y: x & y, [q_objs[k](v) for k,v in queries if v])).order_by('-id').distinct()
 
-        try: args = parser.parse_args(shlex.split(' '.join(args)))
-        except: return 'invalid search'
-
-        links = and_q_objs(args.all) if args.all else or_q_objs(args._get_kwargs())
+        try:
+            parsed_args = parser.parse_args(shlex.split(' '.join(args)))
+            links = and_q_objs(parsed_args.all) if parsed_args.all else or_q_objs(parsed_args._get_kwargs())
+        except Exception:
+            args = ' '.join(args)
+            links = Link.objects.filter(reduce(lambda x,y: x | y, [q(args) for q in [
+                        lambda x: Q(link__icontains=x),
+                        lambda x: Q(title__icontains=x)
+            ]])).order_by('-id').distinct()
         if links:
             for link in links[:5]:
                 msg = '[%d] %s' % (link.id, str(link.link))

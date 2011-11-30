@@ -1,9 +1,6 @@
-import os, datetime
+import datetime, re
 from chii import command
 from collections import Counter
-import re
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from quotes.models import Quote
 
 @command('+q', 'q+', 'addquote')
